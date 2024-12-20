@@ -26,23 +26,27 @@ export function createCollectionStore(storeName, localStorageKey, initialItems) 
     })
 
     function addItem() {
-      list.value.push({
+      const newNote = {
         id: uid(),
-        title: `Заметка ${list.value.length + 1}`,
+        title: `Заметка`,
         completed: false,
         todos: []
-      })
+      }
+
+      list.value.push(newNote)
       saveItems()
     }
 
     function addTodo(noteId, todoTitle) {
       const note = list.value.find(note => note.id === noteId)
       if (note) {
-        note.todos.push({
+        const newTodo = {
           id: uid(),
           title: todoTitle,
           completed: false
-        })
+        }
+
+        note.todos.push(newTodo)
         saveItems()
       }
     }
@@ -67,8 +71,10 @@ export function createCollectionStore(storeName, localStorageKey, initialItems) 
     }
 
     function removeItem(id) {
-      list.value = list.value.filter(item => item.id !== id)
-      saveItems()
+      if (confirm('Вы уверены, что хотите удалить эту заметку?')) {
+        list.value = list.value.filter(item => item.id !== id)
+        saveItems()
+      }
     }
 
     function completeItem(item) {

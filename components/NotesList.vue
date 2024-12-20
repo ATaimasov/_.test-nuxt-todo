@@ -2,7 +2,10 @@
   <div class="notes-list">
     <div v-if="notesStore.list.length > 0" class="notes-list__container">
       <div class="note__container" v-for="note in notesStore.list" :key="note.id">
-        <h1 class="note__title">{{ note.title }}</h1>
+        <div class="note-header">
+            <RemoveButton class="note-header__remove" @remove="notesStore.removeItem(note.id)"/>
+            <h1 class="note-header__title">{{ note.title }}</h1>
+        </div>
         <div class="todo__container">
             <TodoList :noteId="note.id" />
         </div>
@@ -24,6 +27,8 @@ const notesStore = useNotesStore()
 </script>
 
 <style lang="scss" scoped>
+@use 'sass:color';
+
 .notes-list {
   display: flex;
   flex-direction: column;
@@ -39,11 +44,6 @@ const notesStore = useNotesStore()
 }
 
 .note {
-  &__title {
-    font-size: px-to-rem(20px);
-    font-weight: 600;
-    text-align: right;
-  }
 
   &__container {
     display: flex;
@@ -61,6 +61,27 @@ const notesStore = useNotesStore()
 
     &:first-child {
       margin-top: px-to-rem(10px);
+    }
+  }
+
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &__title {
+        font-size: px-to-rem(20px);
+        font-weight: 600;
+        text-align: right;
+    }
+
+    &__remove {
+        scale: 1.5;
+        color: color.adjust(white, $lightness: -10%);
+
+        &:hover {
+            color: $color-danger;
+        }
     }
   }
 }

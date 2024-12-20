@@ -1,0 +1,29 @@
+@use 'global' as *;
+@use '@base/base';
+
+.main {
+    @include mf-bp-rem('padding', (
+        xs: 15px,
+    ));
+    @include mf-bp-rem('gap', (
+        xs: 10px,
+        md: avg(10px, 20px),
+        xl: 20px
+    ));
+}
+
+.header,
+.footer {
+    &-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        @include mf-bp-rem('padding', (
+            xs: 20px,
+            md: avg(20px, 40px),
+            xxl: 40px,
+        ))
+    }
+}
+
+

@@ -1,0 +1,12 @@
+// colors
+$color-main:      #01579B; // primary colour
+$color-secondary: #FFEB3B; // complementary colour
+$color-danger:    #D41131; // the colour of a mistake, a dangerous act
+$color-success:   #3FD411; // confirmation colour, successful completion of the operation
+$color-warning:   #D8AE1C; // information message colour
+
+$color-text-main: white;
+
+$color-link       : $color-secondary;
+$color-link-active: $color-main;
+$color-link-hover : $color-main;

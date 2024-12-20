@@ -1,0 +1,12 @@
+@use '@abstracts/variables/variables' as *;
+
+@mixin link-under {
+    border-bottom: 1px solid transparent;
+    padding-bottom: 1px;
+
+    transition: border-color $animation-duration $animation;
+
+    &:hover {
+        border-bottom: 1px solid $color-main;
+    }
+}

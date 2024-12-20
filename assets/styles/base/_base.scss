@@ -1,0 +1,113 @@
+// abstracts
+@use '@styles/global' as *;
+@use "sass:color";
+
+// root styles
+@use '@base/fonts';
+@use '@base/reset';
+@use '@base/animation';
+@use '@base/state';
+
+
+html {
+    font-family: $font-family;
+    scrollbar-color: hex-to-rgba($color-main, 0.9) color.adjust(white, $lightness: -10%);
+    scrollbar-width: thin;
+}
+
+.html {
+    font-style : normal;
+    line-height: 1.2em;
+    @include mf-bp-rem('font-size', (
+        xs: $font-size-html * 0.8,
+        sm: $font-size-html * 0.9,
+        xl: $font-size-html,
+    ));
+}
+
+// grid 3 rows start
+.body {
+    &--grid {
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        grid-template-columns: 100%;
+        justify-items: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+}
+.footer,
+.header,
+.main {
+    color: $color-text-main;
+    &--grid {
+        width: 100%;
+    }
+}
+// grid 3 rows end
+
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.img {
+    max-width: 100%;
+    height: auto;
+}
+
+.logo {
+    line-height: 0;
+    user-select: none;
+}
+
+.link {
+    text-decoration: none;
+    cursor: pointer;
+    transition: opacity $animation-duration $animation;
+
+    &:is(:focus-visible, :hover) {
+        outline: none;
+        opacity: $opacity-hover;
+    }
+}
+
+.icon {
+    fill      : currentColor;
+    transition: fill $animation-duration $animation;
+
+    @include mf-bp-rem('width', (
+        xs: 24px,
+        md: 36px,
+    ));
+    @include mf-bp-rem('height', (
+            xs: 24px,
+            md: 36px,
+    ));
+
+    &:hover {
+        fill: $color-link-hover;
+    }
+
+    svg {
+        transition: all $animation-duration $animation;
+        fill: сurrentColor;
+        
+
+        &:hover {
+            opacity: $opacity-hover;
+        }
+    }
+}
+
+::selection {
+    background: color.adjust($color-main, $lightness: -20%);
+    text-shadow: none;
+    color: white;
+}
+
+
+
+

@@ -1,0 +1,34 @@
+@use '@abstracts/variables/variables' as *;
+@use '@abstracts/mixins/adaptive/_mf-breakpoints-mixins' as *;
+
+
+@mixin el($section) {
+    &__#{$section} {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        &__wrapper {
+            display: grid;
+            justify-content: center;
+
+            @include mf-bp('grid-template-columns', (
+            xs: 1fr,
+            md: 1fr 1fr 1fr,
+            xxl: 1fr 1fr 1fr
+            ));
+
+            @media screen and (min-width: $screen-lg) {
+                width: 83.33%;    
+            }
+        }
+
+        &__container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}

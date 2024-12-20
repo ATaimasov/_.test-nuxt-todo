@@ -1,0 +1,16 @@
+@use '@abstracts/variables/variables' as *;
+
+@mixin icon {
+    cursor: pointer;
+    fill      : white;
+    transition: fill $animation-duration $animation, opacity $animation-duration $animation;
+
+    &--active {
+        fill: $color-link-active;
+    }
+
+    svg {
+        transition: all $animation-duration $animation;
+        fill: сurrentColor;
+    }
+}

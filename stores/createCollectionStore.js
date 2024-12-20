@@ -63,6 +63,9 @@ export function createCollectionStore(storeName, localStorageKey, initialItems) 
     }
 
     function removeTodo(noteId, todoId) {
+      const confirmation = deletingConfirm()
+      if (!confirmation) return
+
       const note = list.value.find(note => note.id === noteId)
       if (note) {
         note.todos = note.todos.filter(todo => todo.id !== todoId)
@@ -71,10 +74,20 @@ export function createCollectionStore(storeName, localStorageKey, initialItems) 
     }
 
     function removeItem(id) {
+      const confirmation = deletingConfirm()
+      if (!confirmation) return
+
+      list.value = list.value.filter(item => item.id !== id)
+      saveItems()
+    }
+
+    function deletingConfirm() {
+      let answer = false;
+
       if (confirm('Вы уверены, что хотите удалить эту заметку?')) {
-        list.value = list.value.filter(item => item.id !== id)
-        saveItems()
-      }
+        answer = true;
+      } 
+      return answer
     }
 
     function completeItem(item) {

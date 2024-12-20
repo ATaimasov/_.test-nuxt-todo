@@ -24,6 +24,7 @@
       <h3>Список задач пуст</h3>
     </div>
     <AddButton 
+    v-if="route.name === 'edit'"
       @add="addTodo"
       btnText="Добавить задачу"
     />
@@ -33,6 +34,7 @@
 <script setup>
 import { computed } from 'vue'
 import { useNotesStore } from '~/stores/useNotesStore'
+import { useRoute } from '#app'
 
 const props = defineProps({
   noteId: {
@@ -40,6 +42,9 @@ const props = defineProps({
     required: true
   }
 })
+
+const route = useRoute();
+console.log(' ',  route.name)
 
 const notesStore = useNotesStore()
 

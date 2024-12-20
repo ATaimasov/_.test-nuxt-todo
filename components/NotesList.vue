@@ -3,7 +3,14 @@
     <div v-if="notesStore.list.length > 0" class="notes-list__container">
       <div class="note__container" v-for="note in notesStore.list" :key="note.id">
         <div class="note-header">
-            <RemoveButton class="note-header__remove" @remove="notesStore.removeItem(note.id)"/>
+            <div class="note-header__utilities">
+                <RemoveButton class="note-header__remove btn" @remove="notesStore.removeItem(note.id)"/>
+                <AddButton
+                class="btn-add"
+                btnText=""
+                @add="notesStore.addItem()" 
+                />
+            </div>
             <h1 class="note-header__title">{{ note.title }}</h1>
         </div>
         <div class="todo__container">
@@ -28,6 +35,7 @@ const notesStore = useNotesStore()
 
 <style lang="scss" scoped>
 @use 'sass:color';
+
 
 .notes-list {
   display: flex;
@@ -69,6 +77,21 @@ const notesStore = useNotesStore()
     justify-content: space-between;
     align-items: center;
 
+    &__utilities {
+        display: flex;
+        gap: px-to-rem(10px);
+        justify-content: center;
+        align-items: center;
+
+        & > * {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            scale: 1.2;
+        }
+    }
+
     &__title {
         font-size: px-to-rem(20px);
         font-weight: 600;
@@ -76,7 +99,6 @@ const notesStore = useNotesStore()
     }
 
     &__remove {
-        scale: 1.5;
         color: color.adjust(white, $lightness: -10%);
 
         &:hover {
@@ -84,6 +106,15 @@ const notesStore = useNotesStore()
         }
     }
   }
+}
+
+.btn-add {
+    color: $color-text-main;
+
+    &:hover {
+        color: $color-success;
+        opacity: 1;
+    }
 }
 
 input {

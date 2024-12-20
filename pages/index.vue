@@ -7,11 +7,12 @@ const notesStore = useNotesStore()
 
 <template>
   <section class="section">
-    <AddButton 
-    class="add-note"
-    @add="notesStore.addItem()" 
-    btnText="Добавить заметку"
-    />
+    <NuxtLink to="/" class="link">
+      <BackButton 
+      class="add-note"
+      btnText="Вернуться на главную"
+      />
+    </NuxtLink>
     <NotesList/>
   </section>
 </template>
@@ -25,7 +26,7 @@ const notesStore = useNotesStore()
     gap: px-to-rem(20px);
   }
  
-  .add-note {
+   .add-note {
     border: 1px solid hex-to-rgba($color-main, 0.3);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 80%;
@@ -36,5 +37,14 @@ const notesStore = useNotesStore()
 
     justify-content: center;
   }
- 
+
+  .link {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 10px;
+  padding: 15px;
+  color: $color-text-main;
+}
+
 </style>

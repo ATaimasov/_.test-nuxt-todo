@@ -1,7 +1,9 @@
 <template>
-  <div class="add-todo__container">
-    <InteractionIcon class="add-icon" @click="$emit('add')"></InteractionIcon>
-    <h2 v-if="btnText !== ''">{{ btnText }}</h2>
+  <div class="back-button">
+    <NuxtLink to="/" class="link">
+      <BackIcon class="add-icon"></BackIcon>
+      <h2 v-if="btnText !== ''">{{ btnText }}</h2>
+    </NuxtLink>
   </div>
 </template>
 
@@ -19,8 +21,8 @@ const props = defineProps({
 
 </script>
 
-<style scoped>
-.add-todo__container {
+<style lang="scss" scoped>
+.back-button {
   display: flex;
   align-items: center;
   justify-content: start;
@@ -28,7 +30,14 @@ const props = defineProps({
   padding: 15px;
 }
 
-.add-icon:hover {
-  transform: rotate(90deg);
+.link {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 10px;
+  padding: 15px;
+  color: $color-text-main;
 }
+
+
 </style>

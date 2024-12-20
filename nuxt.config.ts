@@ -7,6 +7,10 @@ import { fileURLToPath, URL } from 'node:url'
   }
 
 export default defineNuxtConfig({
+  server: {
+    port: 3000,
+    host: '0.0.0.0'
+  },
   compatibilityDate: '2024-11-01',
   devtools         : { enabled: true },
   alias            : {

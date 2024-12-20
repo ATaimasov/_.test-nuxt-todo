@@ -19,9 +19,9 @@ html {
     font-style : normal;
     line-height: 1.2em;
     @include mf-bp-rem('font-size', (
-        xs: $font-size-html * 0.8,
-        sm: $font-size-html * 0.9,
-        xl: $font-size-html,
+        xs: $font-size-html * 0.5,
+        sm: $font-size-html * 0.8,
+        md: $font-size-html,
     ));
 }
 
@@ -47,10 +47,18 @@ html {
 // grid 3 rows end
 
 .main {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 100%;
+    justify-items: center;
     justify-content: center;
-    align-items: center;
+    align-content: center;
+    height: 100%;
+
+    @include mf-bp('grid-template-rows', (
+        xs: 5vh 95vh,
+        md: 7vh 93vh,
+        xxl:  10vh 90vh
+    ));
 }
 
 .img {

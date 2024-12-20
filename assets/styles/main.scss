@@ -26,4 +26,22 @@
     }
 }
 
+.section {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 100%;
+    width: 50%;
+    gap: px-to-rem(20px);
+
+    & > * {
+        height: 100%;
+    }
+
+
+    @include mf-bp('width', (
+        xs: 100%,
+        md: 70%,
+        xxl: 50%
+    ));
+  }
 

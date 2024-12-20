@@ -7,27 +7,27 @@ const notesStore = useNotesStore()
 
 <template>
   <section class="section">
-    <NuxtLink to="/" class="link">
-      <BackButton 
-      class="add-note"
-      btnText="Вернуться на главную"
-      />
-    </NuxtLink>
+    <div class="link__container">
+      <NuxtLink to="/" class="link">
+        <BackButton
+        class="add-note"
+        btnText="Вернуться на главную"
+        />
+      </NuxtLink>
+    </div>
     <NotesList
     />
   </section>
 </template>
 
 <style lang="scss" scoped>
-  .section {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-auto-rows: 10vh 1fr;
-    width: 50%;
-    gap: px-to-rem(20px);
-  }
+
  
-  .add-note {
+   .link__container {
+    display: flex;
+    gap: px-to-rem(20px);
+    justify-content: center;
+    padding: px-to-rem(20px);
     border: 1px solid hex-to-rgba($color-main, 0.3);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 80%;
@@ -37,6 +37,8 @@ const notesStore = useNotesStore()
     font-size: 1.5rem;
 
     justify-content: center;
+    align-items: center;
+
   }
 
 

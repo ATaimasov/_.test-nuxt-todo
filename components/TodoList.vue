@@ -1,32 +1,44 @@
 <template>
   <div class="todo-list">
     <div v-if="todos && todos.length > 0">
-      <div v-for="todo in todos" :key="todo.id">
-        <TodoItem>
+      <div v-for="todo in todos" :key="todo.id"
+      class="todo-list"
+      >
+        <TodoItem
+        >
           <CompleteIcon 
+            v-if="route.name === 'edit'"
             @click="completeTodo(todo.id)"
             :style="getCompleteIconStyle(todo)"
           />
           <input 
-            :disabled="todo.completed"
+            :disabled="todo.completed || route.name !== 'edit'"
             :style="getInputStyle(todo)"
             type="text"
             v-model="todo.title"
-            placeholder="Добавить задачу"
+            :placeholder="route.name === 'edit' ? 'Добавить задачу' : 'Задача не добавлена'"
             @keyup.enter="addTodo"
             @input="updateTodo(todo.id, $event.target.value)"
           >
-          <RemoveButton @remove="removeTodo(todo.id)"/>
+          <Button 
+            v-if="route.name === 'edit'"
+            @action="removeTodo(todo.id)"
+            btnClass="delete"
+          />
         </TodoItem>
       </div>
     </div>
-    <div v-else>
+    <div v-else
+    class="empty-list"
+    >
       <h3>Список задач пуст</h3>
     </div>
-    <AddButton 
-    v-if="route.name === 'edit'"
-      @add="addTodo"
+    <Button 
+      v-if="route.name === 'edit'"
+      @action="addTodo"
+      btnClass="add"
       btnText="Добавить задачу"
+      class="btn"
     />
   </div>
 </template>
@@ -34,7 +46,10 @@
 <script setup>
 import { computed } from 'vue'
 import { useNotesStore } from '~/stores/useNotesStore'
-import { useRoute } from '#app'
+import { useRoute } from 'vue-router'
+import TodoItem from './TodoItem.vue'
+import CompleteIcon from './CompleteIcon.vue'
+import Button from './Button.vue'
 
 const props = defineProps({
   noteId: {
@@ -44,8 +59,6 @@ const props = defineProps({
 })
 
 const route = useRoute();
-console.log(' ',  route.name)
-
 const notesStore = useNotesStore()
 
 const todos = computed(() => {
@@ -65,7 +78,8 @@ const getCompleteIconStyle = computed(() => (todo) => {
 
 const getInputStyle = computed(() => (todo) => ({
   textDecoration: todo.completed ? 'line-through' : 'none',
-  color: todo.title === '' ? 'gray' : 'inherit'
+  color: todo.title === '' ? 'gray' : 'inherit',
+  width: route.name === 'edit' ? '80%' : '100%'
 }))
 
 function addTodo() {
@@ -83,17 +97,22 @@ function removeTodo(todoId) {
 function updateTodo(todoId, newTitle) {
   notesStore.updateTodo(props.noteId, todoId, newTitle)
 }
-
 </script>
 
 <style lang="scss" scoped>
 .todo-list {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: px-to-rem(10px);
   scrollbar-color: #ccc transparent;
   scrollbar-width: thin;
-  padding: px-to-rem(20px);
+  padding: px-to-rem(10px);
+
+  
+  @include mf-bp-rem('min-height', (
+    xs: 100px,
+    xl: 130px
+  ))
 }
 
 input {
@@ -102,5 +121,19 @@ input {
   border-radius: 5px;
   padding: 10px;
   font-size: 1.2rem;
+}
+
+.btn {
+  justify-content: center;
+  scale: 0.8;
+}
+
+.empty-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: px-to-rem(10px);
+  padding: px-to-rem(10px);
 }
 </style>

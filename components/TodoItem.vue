@@ -21,6 +21,7 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   background-color: #fff;
   color: black;
+  max-height: 80px;
 }
 
 </style>

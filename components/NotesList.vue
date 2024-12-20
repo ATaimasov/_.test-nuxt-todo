@@ -4,14 +4,23 @@
       <div class="note__container" v-for="note in notesStore.list" :key="note.id">
         <div class="note-header">
             <div class="note-header__utilities">
-                <RemoveButton class="note-header__remove btn" @remove="notesStore.removeItem(note.id)"/>
-                <AddButton
-                class="btn-add"
-                btnText=""
-                @add="notesStore.addItem()" 
+                <Button 
+                btnClass="delete"
+                @action="notesStore.removeItem(note.id)"
+                />
+                <Button
+                v-if="route.name === 'edit'"
+                btnClass="add"
+                @action="notesStore.addItem()" 
                 />
             </div>
-            <h1 class="note-header__title">{{ note.title }}</h1>
+            <input 
+              class="note-header__title"
+              type="text" 
+              v-model="note.title"
+              placeholder="Заметка"
+              :disabled="route.name !== 'edit'"
+            >
         </div>
         <div class="todo__container">
             <TodoList :noteId="note.id" />
@@ -28,13 +37,15 @@
 import { useNotesStore } from '~/stores/useNotesStore'
 import { computed } from 'vue'
 import TodoList from './TodoList.vue'
+import { useRoute } from 'vue-router'
+
+const route = useRoute();
 
 const notesStore = useNotesStore()
 
 </script>
 
 <style lang="scss" scoped>
-@use 'sass:color';
 
 
 .notes-list {
@@ -56,7 +67,7 @@ const notesStore = useNotesStore()
   &__container {
     display: flex;
     flex-direction: column;
-    gap: px-to-rem(20px);
+    gap: px-to-rem(10px);
     justify-content: center;
     padding: px-to-rem(20px);
     border: 1px solid hex-to-rgba($color-main, 0.3);
@@ -96,26 +107,18 @@ const notesStore = useNotesStore()
         font-size: px-to-rem(20px);
         font-weight: 600;
         text-align: right;
-    }
+        background: transparent;
+        border: none;
+        color: white;
+        outline: none;
 
-    &__remove {
-        color: color.adjust(white, $lightness: -10%);
-
-        &:hover {
-            color: $color-danger;
+        &::placeholder {
+            color: white;
         }
     }
   }
 }
 
-.btn-add {
-    color: $color-text-main;
-
-    &:hover {
-        color: $color-success;
-        opacity: 1;
-    }
-}
 
 input {
   border: 1px solid #ccc;
@@ -130,7 +133,6 @@ input {
         display: flex;
         flex-direction: column;
         gap: px-to-rem(20px);
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
 }
 </style>

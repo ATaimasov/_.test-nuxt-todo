@@ -28,7 +28,7 @@ export function createCollectionStore(storeName, localStorageKey, initialItems) 
     function addItem() {
       const newNote = {
         id: uid(),
-        title: `Заметка`,
+        title: ``,
         completed: false,
         todos: []
       }

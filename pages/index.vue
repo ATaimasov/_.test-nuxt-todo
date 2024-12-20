@@ -9,7 +9,7 @@ const notesStore = useNotesStore()
   <section class="section">
     <AddButton 
     class="add-note"
-    @add="notesStore.addItem" 
+    @add="notesStore.addItem()" 
     btnText="Добавить заметку"
     />
     <NotesList/>

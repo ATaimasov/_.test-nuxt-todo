@@ -1,9 +1,8 @@
-import { createListStore } from './createListStore'
+import { createCollectionStore } from './createCollectionStore'
 
 const initialNotes = [
-  { id: '1', title: 'Заметка 1', completed: false },
-  { id: '2', title: 'Заметка 2', completed: false },
-  { id: '3', title: 'Заметка 3', completed: false }
+  { id: '1', title: 'Заметка 1', completed: false, todos: [] },
+  { id: '2', title: 'Заметка 2', completed: false, todos: [] },
 ]
 
-export const useNotesStore = createListStore('notesStore', 'notesList', initialNotes)
+export const useNotesStore = createCollectionStore('notesStore', 'notesList', initialNotes)

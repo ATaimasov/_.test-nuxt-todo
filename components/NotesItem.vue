@@ -1,7 +1,7 @@
 <template>
   <div class="notes-item">
     <AddButton 
-    @add="addTodo" 
+    @add="todoStore.addItem" 
     btnText="Добавить задачу"
     />
     <TodoList></TodoList>
@@ -9,12 +9,10 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
 import { useTodoStore } from '@/stores/useTodoStore'
 import AddButton from './AddButton.vue'
 
-const store = useTodoStore()
-const { addTodo } = store
+const todoStore = useTodoStore()
 </script>
 
 <style>

@@ -1,9 +1,7 @@
 <script setup lang="ts">
-import { storeToRefs } from 'pinia'
 import { useNotesStore } from '@/stores/useNotesStore'
 
-const store = useNotesStore()
-const { addNote } = store
+const notesStore = useNotesStore()
 
 </script>
 
@@ -11,7 +9,7 @@ const { addNote } = store
   <section class="section">
     <AddButton 
     class="add-note"
-    @add="addNote" 
+    @add="notesStore.addItem" 
     btnText="Добавить заметку"
     />
     <NotesList/>

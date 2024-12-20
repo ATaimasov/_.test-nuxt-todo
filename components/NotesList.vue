@@ -1,15 +1,15 @@
 <template>
   <div class="notes-list">
-        <div v-if="notesList.length > 0" 
+        <div v-if="notesStore.list.length > 0" 
         class="notes-list-container"
         >
             <div   
-            v-for="note in notesList" 
+            v-for="note in notesStore.list" 
             :key="note.id"
              >
                 <NotesItem>
                     <CompleteIcon 
-                    @click="completeNote(note)"
+                    @click="notesStore.completeItem(note)"
                     :style="getCompleteIconStyle(note)"
                     />
                      <input 
@@ -18,9 +18,9 @@
                      type="text"
                      v-model="note.title"
                      placeholder="Добавить задачу"
-                     @keyup.enter="addNote"
+                     @keyup.enter="notesStore.addItem"
                      >
-                    <RemoveButton @remove="removeNote(note.id)"/>
+                    <RemoveButton @remove="notesStore.removeItem(note.id)"/>
                 </NotesItem>
             </div>
         </div>
@@ -32,15 +32,11 @@
 
 <script setup>
 
-import { storeToRefs } from 'pinia'
 import { useNotesStore } from '~/stores/useNotesStore'
 
 import { computed } from 'vue'
 
-const store = useNotesStore()
-const { notesList} = storeToRefs(store)
-const { addNote, removeNote } = store
-
+const notesStore = useNotesStore()
 
 
 const getCompleteIconStyle = computed(() => (note) => {
@@ -57,13 +53,6 @@ const getInputStyle = computed(() => (note) => ({
   textDecoration: note.completed ? 'line-through' : 'none',
   color: note.title === '' ? 'gray' : 'inherit'
 }))
-
-const completeNote = (note) => {
-    if(note.title !== '') {
-        note.completed = !note.completed
-    }
-}
-
 
 </script>
 

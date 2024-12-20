@@ -1,10 +1,10 @@
 <template>
     <div class="todo-list">
-        <div v-if="todoList.length > 0" >
-            <div   v-for="todo in todoList" :key="todo.id" >
+        <div v-if="todoStore.list.length > 0" >
+            <div   v-for="todo in todoStore.list" :key="todo.id" >
                 <TodoItem>
                     <CompleteIcon 
-                    @click="completeTodo(todo)"
+                    @click="todoStore.completeItem(todo)"
                     :style="getCompleteIconStyle(todo)"
                     />
                      <input 
@@ -13,9 +13,9 @@
                      type="text"
                      v-model="todo.title"
                      placeholder="Добавить задачу"
-                     @keyup.enter="addTodo"
+                     @keyup.enter="todoStore.addItem"
                      >
-                    <RemoveButton @remove="removeTodo(todo.id)"/>
+                    <RemoveButton @remove="todoStore.removeItem(todo.id)"/>
                 </TodoItem>
             </div>
         </div>
@@ -32,9 +32,7 @@ import { useTodoStore } from '~/stores/useTodoStore'
 
 import { computed } from 'vue'
 
-const store = useTodoStore()
-const { todoList } = storeToRefs(store)
-const { addTodo, removeTodo } = store
+const todoStore = useTodoStore()
 
 
 const getCompleteIconStyle = computed(() => (todo) => {
@@ -51,12 +49,6 @@ const getInputStyle = computed(() => (todo) => ({
   textDecoration: todo.completed ? 'line-through' : 'none',
   color: todo.title === '' ? 'gray' : 'inherit'
 }))
-
-const completeTodo = (todo) => {
-    if(todo.title !== '') {
-        todo.completed = !todo.completed
-    }
-}
 
 
 

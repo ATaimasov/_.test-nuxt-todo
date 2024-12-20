@@ -25,7 +25,6 @@ export default defineNuxtConfig({
     '@svg'   : createAlias('./assets/svg'),
   },
   modules: [
-    '@vueuse/nuxt',
     '@pinia/nuxt',
     '@nuxt/fonts',
   ],

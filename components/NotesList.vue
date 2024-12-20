@@ -27,8 +27,15 @@
         </div>
       </div>
     </div>
-    <div v-else>
+    <div 
+    class="notes-list__empty"
+    v-else>
       <h3>Список заметок пуст</h3>
+      <Button
+        v-if="route.name === 'edit'"
+        btnClass="add"
+        @action="notesStore.addItem()" 
+      />
     </div>
   </div>
 </template>
@@ -59,6 +66,14 @@ const notesStore = useNotesStore()
     flex-direction: column;
     gap: px-to-rem(20px);
     width: 90%;
+  }
+
+  &__empty {
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: px-to-rem(10px);
+    align-items: center;
   }
 }
 

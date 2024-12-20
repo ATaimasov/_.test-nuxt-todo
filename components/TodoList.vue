@@ -106,7 +106,6 @@ function updateTodo(todoId, newTitle) {
   gap: px-to-rem(10px);
   scrollbar-color: #ccc transparent;
   scrollbar-width: thin;
-  padding: px-to-rem(10px);
 
   
   @include mf-bp-rem('min-height', (

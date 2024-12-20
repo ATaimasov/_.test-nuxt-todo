@@ -37,7 +37,7 @@ export function createListStore(storeName, localStorageKey, initialItems) {
     function addItem() {
       list.value.push({
         id: uid(),
-        title: '',
+        title: `Заметка ${list.value.length + 1}`,
         completed: false
       })
     }

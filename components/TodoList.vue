@@ -54,16 +54,15 @@ const getInputStyle = computed(() => (todo) => ({
 
 </script>
 
-<style>
+<style lang="scss" scoped>
 
 .todo-list {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    overflow-x: auto;
-    max-height: 92%;
     scrollbar-color: #ccc transparent;
     scrollbar-width: thin;
+    padding: px-to-rem(20px);
 }
 
 input {

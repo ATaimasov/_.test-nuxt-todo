@@ -1,12 +1,14 @@
 <template>
   <div class="notes-list">
         <div v-if="notesStore.list.length > 0" 
-        class="notes-list-container"
+        class="notes-list__container"
         >
             <div   
+            class="note__container"
             v-for="note in notesStore.list" 
             :key="note.id"
              >
+                <h1 class="note__title">{{ note.title }}</h1>
                 <NotesItem>
                     <CompleteIcon 
                     @click="notesStore.completeItem(note)"
@@ -65,11 +67,38 @@ const getInputStyle = computed(() => (note) => ({
     overflow-x: auto;
     scrollbar-color: #ccc transparent;
     scrollbar-width: thin;
+    align-items: center;
 
-    &-container {
+    &__container {
         display: flex;
         flex-direction: column;
         gap: px-to-rem(20px);
+        width: 90%;
+    }
+}
+
+.note {
+    
+
+    &__title {
+        font-size: px-to-rem(20px);
+        font-weight: 600;
+        text-align: right;
+    }
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+        gap: px-to-rem(20px);
+        justify-content: center;
+        padding: px-to-rem(20px);
+        border: 1px solid hex-to-rgba($color-main, 0.3);
+        box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.31);
+        border-radius: 10px;
+
+        &:last-child {
+        margin-bottom: px-to-rem(10px);
+        }
     }
 }
 

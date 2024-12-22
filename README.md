@@ -1,75 +1,43 @@
-# Nuxt Minimal Starter
+# Notes Todo Nuxt
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+## Введение
 
-## Setup
+Создание заметок с ToDo.
 
-Make sure to install dependencies:
+- Есть две страницы: одна для просмотра задач, а вторая для редактирования
+- В режиме редактирования можно создавать заметки, добавлять задачи, удалять, ставить выполненными, менять названия заметок
+- Заметки сохраняются в localStorage
+- Можно протестировать сборку в Docker
 
-```bash
-# npm
-npm install
+Проект на сервере: [notesnuxt.таймасов.рф](https://notesnuxt.таймасов.рф)
 
-# pnpm
-pnpm install
+## Установка и запуск проекта
 
-# yarn
-yarn install
+Клонировать репозиторий:
 
-# bun
-bun install
-```
+    git clone https://github.com/ATaimasov/_.test-nuxt-todo
 
-## Development Server
+Установить зависимости:
 
-Start the development server on `http://localhost:3000`:
+    npm install
 
-```bash
-# npm
-npm run dev
+Запустить сборку:
 
-# pnpm
-pnpm dev
+    1. npm run build
+    2. node .output/server/index.mjs
 
-# yarn
-yarn dev
+Запустить сборку через Docker:
 
-# bun
-bun run dev
-```
+    docker compose up --build
 
-## Production
+## Используемые технологии и подходы
 
-Build the application for production:
+#### Основа:
+- Vue
+- CSS;
+- Pinia;
 
-```bash
-# npm
-npm run build
+Дополнительно использовано в разработке:
+- uid для генерации уникального id
 
-# pnpm
-pnpm build
 
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.

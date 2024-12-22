@@ -11,8 +11,9 @@
                 <Button
                 v-if="route.name === 'edit'"
                 btnClass="add"
-                @action="notesStore.addItem()" 
+                @action="notesStore.addTodo(note.id, '')" 
                 />
+                
             </div>
             <input 
               class="note-header__title"
@@ -50,6 +51,11 @@ const route = useRoute();
 
 const notesStore = useNotesStore()
 
+function addTodo() {
+  notesStore.addTodo(noteId, '')
+}
+
+
 </script>
 
 <style lang="scss" scoped>
@@ -85,6 +91,7 @@ const notesStore = useNotesStore()
     gap: px-to-rem(10px);
     justify-content: center;
     padding: px-to-rem(20px);
+    padding-bottom: 35px;
     border: 1px solid hex-to-rgba($color-main, 0.3);
     box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.31);
     border-radius: 10px;

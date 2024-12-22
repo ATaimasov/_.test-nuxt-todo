@@ -4,17 +4,25 @@
                 <Logo class="header__logo logo"></Logo>
             </a>
             <ul class="header__list">
-                <NuxtLink to="/" class="link">
-                    <li class="header__list-item">Заметки</li>
-                </NuxtLink>
-                <NuxtLink to="/edit" class="link">
+                <NuxtLink to="/edit" class="link" v-if="route.name !== 'edit'">
                     <li class="header__list-item">Редактировать</li>
                 </NuxtLink>
+                <li 
+                  v-if="route.name === 'edit'"
+                  @click="notesStore.addItem()"
+                  class="header__list-item link"
+                >Создать заметку</li>
             </ul>
         </div>
 </template>
 
 <script setup lang="ts">
+import { useRoute } from 'vue-router'
+import { useNotesStore } from '~/stores/useNotesStore'
+
+const route = useRoute();
+const notesStore = useNotesStore()
+
 
 </script>
 
@@ -37,5 +45,6 @@
         }
         
     }
+
     
 </style>

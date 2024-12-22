@@ -1,8 +1,10 @@
 <template>
   <div class="todo-list">
-    <div v-if="todos && todos.length > 0">
+    <div v-if="todos && todos.length > 0"
+      class="todo-list__container"
+      >
       <div v-for="todo in todos" :key="todo.id"
-      class="todo-list"
+      
       >
         <TodoItem
         >
@@ -33,13 +35,6 @@
     >
       <h3>Список задач пуст</h3>
     </div>
-    <Button 
-      v-if="route.name === 'edit'"
-      @action="addTodo"
-      btnClass="add"
-      btnText="Добавить задачу"
-      class="btn"
-    />
   </div>
 </template>
 
@@ -106,12 +101,13 @@ function updateTodo(todoId, newTitle) {
   gap: px-to-rem(10px);
   scrollbar-color: #ccc transparent;
   scrollbar-width: thin;
-
   
-  @include mf-bp-rem('min-height', (
-    xs: 100px,
-    xl: 130px
-  ))
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    gap: px-to-rem(10px);
+  }
 }
 
 input {
@@ -122,10 +118,6 @@ input {
   font-size: 1.2rem;
 }
 
-.btn {
-  justify-content: center;
-  scale: 0.8;
-}
 
 .empty-list {
   display: flex;

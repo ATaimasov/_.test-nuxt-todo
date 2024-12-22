@@ -28,11 +28,10 @@ html {
 // grid 3 rows start
 .body {
     &--grid {
-        display: grid;
-        grid-template-rows: auto 1fr auto;
-        grid-template-columns: 100%;
         justify-items: center;
         align-items: center;
+        display: flex;
+        flex-direction: column;
         min-height: 100vh;
     }
 }
@@ -46,20 +45,6 @@ html {
 }
 // grid 3 rows end
 
-.main {
-    display: grid;
-    grid-template-columns: 100%;
-    justify-items: center;
-    justify-content: center;
-    align-content: center;
-    height: 100%;
-
-    @include mf-bp('grid-template-rows', (
-        xs: 5vh 95vh,
-        md: 7vh 93vh,
-        xxl:  10vh 90vh
-    ));
-}
 
 .img {
     max-width: 100%;

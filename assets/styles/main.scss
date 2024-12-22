@@ -2,6 +2,11 @@
 @use '@base/base';
 
 .main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
     @include mf-bp-rem('padding', (
         xs: 15px,
     ));
@@ -27,9 +32,9 @@
 }
 
 .section {
+
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 100%;
     width: 50%;
     gap: px-to-rem(20px);
 
@@ -42,6 +47,12 @@
         xs: 100%,
         md: 70%,
         xxl: 50%
+    ));
+
+    @include mf-bp('grid-template-rows', (
+        xs: 50px auto,
+        md: avg(50px, 100px) auto,
+        xl: 100px auto
     ));
   }
 

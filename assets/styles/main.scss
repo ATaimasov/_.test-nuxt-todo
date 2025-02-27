@@ -1,58 +1,77 @@
-@use 'global' as *;
-@use '@base/base';
+@use "global" as *;
+@use "@base/base";
 
 .main {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    @include mf-bp-rem('padding', (
-        xs: 15px,
-    ));
-    @include mf-bp-rem('gap', (
-        xs: 10px,
-        md: avg(10px, 20px),
-        xl: 20px
-    ));
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  flex-grow: 1;
+  padding: 15px;
+  gap: 10px;
+
+  @media screen and (min-width: $screen-md) {
+    gap: avg(10px, 20px);
+  }
+  @media screen and (min-width: $screen-xl) {
+    gap: 20px;
+  }
 }
 
-.header,
-.footer {
-    &-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        @include mf-bp-rem('padding', (
-            xs: 20px,
-            md: avg(20px, 40px),
-            xxl: 40px,
-        ))
-    }
+.header-container,
+.footer-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  @media screen and (min-width: $screen-md) {
+    padding: avg(20px, 40px);
+  }
+  @media screen and (min-width: $screen-xl) {
+    padding: 40px;
+  }
 }
 
 .section {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 50px auto;
+  gap: 20px;
+  width: 100%;
 
-    display: grid;
-    grid-template-columns: 1fr;
+  @media screen and (min-width: $screen-md) {
+    grid-template-rows: avg(50px, 100px) auto;
+    width: 70%;
+  }
+  @media screen and (min-width: $screen-xl) {
+    grid-template-rows: 100px auto;
     width: 50%;
-    gap: px-to-rem(20px);
-
-    & > * {
-        height: 100%;
-    }
-
-
-    @include mf-bp('width', (
-        xs: 100%,
-        md: 70%,
-        xxl: 50%
-    ));
-
-    @include mf-bp('grid-template-rows', (
-        xs: 50px auto,
-        md: avg(50px, 100px) auto,
-        xl: 100px auto
-    ));
   }
 
+  & > * {
+    height: 100%;
+  }
+}
+
+.link__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: center;
+  gap: 20px;
+  padding: 10px;
+  width: 80%;
+  font-size: 1.5rem;
+  border: 1px solid rgba($color-main, 0.3);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 10px;
+  padding: 15px;
+  color: $color-text-main;
+}

@@ -1,106 +1,94 @@
 // abstracts
-@use '@styles/global' as *;
+@use "@styles/global" as *;
 @use "sass:color";
 
 // root styles
-@use '@base/fonts';
-@use '@base/reset';
-@use '@base/animation';
-@use '@base/state';
-
-
-html {
-    font-family: $font-family;
-    scrollbar-color: hex-to-rgba($color-main, 0.9) color.adjust(white, $lightness: -10%);
-    scrollbar-width: thin;
-}
+@use "@base/reset";
+@use "@base/animation";
+@use "@base/state";
 
 .html {
-    font-style : normal;
-    line-height: 1.2em;
-    @include mf-bp-rem('font-size', (
-        xs: $font-size-html * 0.5,
-        sm: $font-size-html * 0.8,
-        md: $font-size-html,
-    ));
+  font-family: $font-family;
+  font-size: $font-size-html * 0.5;
+  font-style: normal;
+  line-height: 1.2em;
+  scrollbar-color: rgba($color-main, 0.9) color.adjust(white, $lightness: -10%);
+  scrollbar-width: thin;
+
+  @media screen and (min-width: $screen-md) {
+    font-size: $font-size-html * 0.8;
+  }
+  @media screen and (min-width: $screen-md) {
+    font-size: $font-size-html;
+  }
 }
 
 // grid 3 rows start
-.body {
-    &--grid {
-        justify-items: center;
-        align-items: center;
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-    }
+.body--grid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+  min-height: 100vh;
 }
 .footer,
 .header,
 .main {
-    color: $color-text-main;
-    &--grid {
-        width: 100%;
-    }
+  color: $color-text-main;
+  &--grid {
+    width: 100%;
+  }
 }
 // grid 3 rows end
 
-
 .img {
-    max-width: 100%;
-    height: auto;
+  max-width: 100%;
+  height: auto;
 }
 
 .logo {
-    line-height: 0;
-    user-select: none;
+  line-height: 0;
+  user-select: none;
 }
 
 .link {
-    text-decoration: none;
-    cursor: pointer;
-    transition: opacity $animation-duration $animation;
+  text-decoration: none;
+  transition: opacity $animation-duration $animation;
+  cursor: pointer;
 
-    &:is(:focus-visible, :hover) {
-        outline: none;
-        opacity: $opacity-hover;
-    }
+  &:is(:focus-visible, :hover) {
+    opacity: $opacity;
+    outline: none;
+  }
 }
 
 .icon {
-    fill      : currentColor;
-    transition: fill $animation-duration $animation;
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+  transition: fill $animation-duration $animation;
 
-    @include mf-bp-rem('width', (
-        xs: 24px,
-        md: 36px,
-    ));
-    @include mf-bp-rem('height', (
-            xs: 24px,
-            md: 36px,
-    ));
+  @media screen and (min-width: $screen-md) {
+    width: 36px;
+    height: 36px;
+  }
+
+  &:hover {
+    fill: $color-link-hover;
+  }
+
+  svg {
+    fill: сurrentColor;
+    transition: all $animation-duration $animation;
 
     &:hover {
-        fill: $color-link-hover;
+      opacity: $opacity;
     }
-
-    svg {
-        transition: all $animation-duration $animation;
-        fill: сurrentColor;
-        
-
-        &:hover {
-            opacity: $opacity-hover;
-        }
-    }
+  }
 }
 
 ::selection {
-    background: color.adjust($color-main, $lightness: -20%);
-    text-shadow: none;
-    color: white;
+  background: color.adjust($color-main, $lightness: -20%);
+  text-shadow: none;
+  color: $color-text-main;
 }
-
-
-
-

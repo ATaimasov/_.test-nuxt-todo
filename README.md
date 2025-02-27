@@ -13,7 +13,7 @@
 
 Клонировать репозиторий:
 
-    git clone https://github.com/ATaimasov/_.test-nuxt-todo
+    git clone …
 
 Установить зависимости:
 
